@@ -11,6 +11,7 @@ const CreateTeamForm = () => {
 
   useEffect(() => {
     const fetchPlayers = async () => {
+      let id = toast.loading("Loading Players");
       try {
         const response = await axios.get(`${API_URL}/get-players/${selectedTeam}`);
         console.log(response.data)
@@ -21,6 +22,8 @@ const CreateTeamForm = () => {
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        toast.dismiss(id);
       }
     };
     fetchPlayers();
