@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Fantasy Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Fantasy Game is a comprehensive application that enables users to create, manage, and track their fantasy teams within a fantasy league. It features a robust backend powered by Node.js and Express.js with MongoDB for data storage and a dynamic React frontend for user interaction.
 
-## Available Scripts
+## Features
+- Build and manage fantasy teams
+- Choose players from an extensive pool
+- Each team can include up to 11 players
 
-In the project directory, you can run:
+## Backend Documentation
 
-### `npm start`
+### Technology Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Backend Framework:** Node.js with Express.js
+- **Database:** MongoDB
+- **Hosting:** Render
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### API Endpoints
 
-### `npm test`
+#### Teams
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **GET /teams**: Fetches all teams.
+  - **Response:** A list of teams with player details and total points.
+- **GET /teams/:id**: Fetches a specific team by its ID.
+  - **Response:** Details of the specified team, including players and total points.
+- **POST /teams**: Creates a new team with selected players.
+  - **Response:** Details of the newly created team.
 
-### `npm run build`
+#### Players
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **GET /players/:teamName**: Fetches all players in a specified team.
+  - **Response:** A list of players and their attributes.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Frontend Documentation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Technology Stack
 
-### `npm run eject`
+- **Frontend Framework:** React.js
+- **Styling:** Tailwind CSS
+- **Hosting:** Vercel
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Components
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **CreateTeamForm.jsx**: A form component for creating fantasy teams, allowing users to input team names and select players.
+- **PlayerList.jsx**: Displays a comprehensive list of all available players.
+- **TeamDetails.jsx**: Shows details of a user's team, including selected players and total points.
+- **CreateTeamPage.jsx**: Hosts the CreateTeamForm component, serving as the interface for team creation.
+- **Home.jsx**: The app's landing page, allowing navigation to team creation or team overview.
+- **TeamPage.jsx**: Displays detailed information about a specific team, utilizing the TeamDetails component and fetching data based on the team ID route parameter.

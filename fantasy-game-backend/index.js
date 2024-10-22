@@ -18,14 +18,13 @@ require("dotenv").config();
 // Connecting to database
 database.connect();
 
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' ? process.env.CORS_ORIGIN : 'http://localhost:3000',
+};
+
 // Middleware
 app.use(express.json());
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
+app.use(cors(corsOptions));
 
 // Routes
 app.use(playerRoutes)

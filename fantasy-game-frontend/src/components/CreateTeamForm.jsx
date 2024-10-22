@@ -6,12 +6,14 @@ const CreateTeamForm = () => {
   const [selectedTeam, setSelectedTeam] = useState('India');
   const [selectedPlayers, setSelectedPlayers] = useState([]);
   const [players, setPlayers] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
         const response = await axios.get(`${API_URL}/get-players/${selectedTeam}`);
+        console.log(response.data)
         const data = response.data;
         if (data.success) {
           const sortedPlayers = data.players.sort((a, b) => b.rating - a.rating);
@@ -26,15 +28,20 @@ const CreateTeamForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     if (selectedPlayers.length < 11) {
+      toast.error('You must select at least 11 players.');
+      setIsSubmitting(false);
       return;
     }
 
     if (selectedPlayers.length > 11) {
       toast.error('You can only select up to 11 players.');
+      setIsSubmitting(false);
       return;
     }
+
     let id;
     try {
       id = toast.loading("Creating team")
@@ -56,6 +63,7 @@ const CreateTeamForm = () => {
     }
     finally {
       toast.dismiss(id);
+      setIsSubmitting(false);
     }
   };
 
@@ -133,6 +141,7 @@ const CreateTeamForm = () => {
       <button
         type="submit"
         className="mt-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 w-full"
+        disabled={isSubmitting}
       >
         Create Team
       </button>
@@ -141,3 +150,4 @@ const CreateTeamForm = () => {
 };
 
 export default CreateTeamForm;
+
